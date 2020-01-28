@@ -10,7 +10,7 @@ const client = new Twitter(config)
 function post(text, callback) {
 	client.post('statuses/update', {status: text},  function(error, tweet, response) {
 		if (error) throw error
-		callback(tweet)
+		if (callback) callback(tweet)
 	})
 }
 

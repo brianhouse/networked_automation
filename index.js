@@ -20,9 +20,9 @@ const print = console.log
 //     }
 // })
 
-// api.post("Hello World"))
+api.post("Hello World")
 
-api.post_image("go pios!", "pio.jpg")
+// api.post_image("go pios!", "pio.jpg")
 
 // api.follow("h0use")
 //
