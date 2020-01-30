@@ -1,17 +1,17 @@
-const api = require('./api.js')
+const {api, util} = require('./api.js')
 const print = console.log
 
 
-// api.search("grammys", readResults)
+api.search("grammys", readResults)
 
-// function readResults(tweets) {
-//     for (let tweet of tweets) {
-//         print(tweet.id)
-//         print(tweet.user.screen_name)
-//         print(tweet.text)
-//         print()
-//     }
-// }
+function readResults(tweets) {
+    for (let tweet of tweets) {
+        print(tweet.id)
+        print(tweet.user.screen_name)
+        print(tweet.text)
+        print()
+    }
+}
 
 // api.timeline(function(tweets) {
 //     for (let tweet of tweets) {
@@ -20,9 +20,9 @@ const print = console.log
 //     }
 // })
 
-api.post("Hello World")
+// api.post("Hello World")
 
-// api.post_image("go pios!", "pio.jpg")
+// api.postImage("go pios!", "pio.jpg")
 
 // api.follow("h0use")
 //

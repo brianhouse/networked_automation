@@ -1,4 +1,5 @@
 const Twitter = require('twit')
+const JSON5 = require('JSON5')
 const path = require('path')
 const fs = require('fs')
 const request = require('request')
@@ -83,13 +84,29 @@ function download(uri, filename, callback) {
   	})
 }
 
+function loadData(path) {
+	return JSON5.parse(fs.readFileSync(path, {encoding: "utf-8"}))
+}
 
+function saveData(path, data) {
+	fs.writeFileSync(path, JSON5.stringify(data))
+}
 
-exports.post = post
-exports.post_image = post_image
-exports.follow = follow
-exports.retweet = retweet
-exports.like = like
-exports.reply = reply
-exports.timeline = timeline
-exports.search = search
+function choice(a) {
+    return a[Math.floor(Math.random() * a.length)]
+}
+
+exports.api = {}
+exports.api.post = post
+exports.api.postImage = post_image
+exports.api.follow = follow
+exports.api.retweet = retweet
+exports.api.like = like
+exports.api.reply = reply
+exports.api.timeline = timeline
+exports.api.search = search
+
+exports.util = {}
+exports.util.loadData = loadData
+exports.util.saveData = saveData
+exports.util.choice = choice
