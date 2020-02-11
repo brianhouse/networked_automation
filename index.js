@@ -1,33 +1,34 @@
 const {api, util} = require('./api.js')
 const print = console.log
 
+async function main() { // if top-level await is finally available, remove this
 
-api.search("grammys", readResults)
+    // let tweets = await api.search("grammys")
+    let tweets = await api.timeline()
 
-function readResults(tweets) {
     for (let tweet of tweets) {
         print(tweet.id)
         print(tweet.user.screen_name)
         print(tweet.text)
         print()
     }
+
+    // api.post("Hello World")
+
+    // api.postImage("go pios!", "pio.jpg")
+
+    // api.follow("h0use")
+
+    let tweet = tweets[0]
+
+    // api.like(tweet)
+
+    // api.reply(tweet, "Underrated tweet.")
+
+    // api.retweet(tweet)
+
+    // api.retweetWithComment(tweet, "Snarky commentary")
+
 }
 
-// api.timeline(function(tweets) {
-//     for (let tweet of tweets) {
-//         print(tweet.text)
-//         print()
-//     }
-// })
-
-// api.post("Hello World")
-
-// api.postImage("go pios!", "pio.jpg")
-
-// api.follow("h0use")
-//
-// api.reply("@h0use", "1175205849628700673", "ok, whatever")
-//
-// api.retweet('1217852134147883009')
-//
-// api.like('1217852134147883009')
+main()
