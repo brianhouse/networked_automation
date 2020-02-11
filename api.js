@@ -23,7 +23,7 @@ function reply(screen_name, tweet_id, text, callback) {
 	})
 }
 
-function post_image(text, image_path, callback) {
+function postImage(text, image_path, callback) {
 	let b64content = fs.readFileSync(image_path, { encoding: 'base64' })
 	client.post('media/upload', { media_data: b64content }, function(error, data, response) {
 		if (error) throw error
@@ -44,6 +44,13 @@ function follow(screen_name, callback) {
 
 function retweet(tweet_id, callback) {
 	client.post('statuses/retweet/' + tweet_id, {tweet_id: tweet_id}, function(error, tweet, response) {
+		if (error) throw error
+		if (callback) callback(tweet)
+	})
+}
+
+function retweetWithComment(tweet_id, text, callback) {
+	client.post('statuses/update', {status: text + " " + "https://twitter.com/HouseProf/status/" + tweet_id},  function(error, tweet, response) {
 		if (error) throw error
 		if (callback) callback(tweet)
 	})
@@ -98,9 +105,10 @@ function choice(a) {
 
 exports.api = {}
 exports.api.post = post
-exports.api.postImage = post_image
+exports.api.postImage = postImage
 exports.api.follow = follow
 exports.api.retweet = retweet
+exports.api.retweetWithComment = retweetWithComment
 exports.api.like = like
 exports.api.reply = reply
 exports.api.timeline = timeline
@@ -110,3 +118,4 @@ exports.util = {}
 exports.util.loadData = loadData
 exports.util.saveData = saveData
 exports.util.choice = choice
+exports.util.download = download
